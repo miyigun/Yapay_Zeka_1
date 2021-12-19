@@ -9,9 +9,9 @@ warnings.filterwarnings("ignore")
 
 #veriyi içeri aktaracağız
 veri=pd.read_csv("olimpiyatlar.csv")
-print(veri.head())
-print(veri.info())
-print(veri.columns)
+# print(veri.head())
+# print(veri.info())
+# print(veri.columns)
 
 #sütun isimlerini değiştirelim
 veri.rename(columns={'ID'       :   'id',
@@ -32,11 +32,11 @@ veri.rename(columns={'ID'       :   'id',
 #inplace=True dediğimizde ismi değiştirilen veri otomatik olarak bulunduğu yerde isimlendirilir
 
 veri=veri.drop(["id","oyunlar"],axis=1) #axis=1 sütunları çıkarıyor
-print(veri.head(3))
+# print(veri.head(3))
 #boy ve kilo sütununda bulunan kayıp veriyi etkinlik ortalamasına göre dolduracağız
 essiz_etkinlik=pd.unique(veri.etkinlik)
-print("Eşsiz etkinlik sayısı:{}".format(len(essiz_etkinlik)))
-print(essiz_etkinlik[:10])
+# print("Eşsiz etkinlik sayısı:{}".format(len(essiz_etkinlik)))
+# print(essiz_etkinlik[:10])
 
 #her bir etkinliği iteratif olarak dolaşacağız
 #etkinlik özelinde boy ve kilo ortalamalarını bulacağız
@@ -61,4 +61,16 @@ for e in essiz_etkinlik:    #etkinlik listesi içerisinde dolaş
     veri_gecici[etkinlik_filtre]=veri_filtreli
 #kayıp değerleri giderilmiş geçici veriyi gerçek veri değişkenine eşitle
 veri=veri_gecici.copy()
-veri.info() #boy ve kilo sütunlarında kayıp değer sayısına bak
+
+#boy ve kilo sütunlarında kayıp değer sayısına bak
+# print(veri.info()) 
+
+# yas sütununda bulunan kayıp veriyi, veri setinin ortalamasına göre dolduracağız
+# yas değişkeni tanımlı olmayan verileri bul
+# ~ işareti ile tersini al
+# yas değişkeni tanımlı olan verileri bulmak için filtre oluştur
+yas_ortalamasi=np.round(np.mean(veri.yas),2)
+print("Yaş ortalaması: {}".format(yas_ortalamasi))
+veri["yas"]=veri["yas"].fillna(yas_ortalamasi)
+print(veri.info())
+
