@@ -10,3 +10,4 @@ warnings.filterwarnings("ignore")
 #veriyi içeri aktaracağız
 veri=pd.read_csv("olimpiyatlar.csv")
 print(veri.head())
+print()
