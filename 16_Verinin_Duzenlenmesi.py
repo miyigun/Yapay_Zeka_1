@@ -8,4 +8,5 @@ import warnings
 warnings.filterwarnings("ignore")
 
 #veriyi içeri aktaracağız
-veri=read_csv("olimpiyatlar.csv")
+veri=pd.read_csv("olimpiyatlar.csv")
+print(veri.head())
