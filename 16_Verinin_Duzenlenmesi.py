@@ -70,7 +70,19 @@ veri=veri_gecici.copy()
 # ~ işareti ile tersini al
 # yas değişkeni tanımlı olan verileri bulmak için filtre oluştur
 yas_ortalamasi=np.round(np.mean(veri.yas),2)
-print("Yaş ortalaması: {}".format(yas_ortalamasi))
+# print("Yaş ortalaması: {}".format(yas_ortalamasi))
 veri["yas"]=veri["yas"].fillna(yas_ortalamasi)
+# print(veri.info())
+
+#Madalya alamayan sporcuları veri setinden çıkaracağız. Toplamda 231333 tan örnek için madalya değişkeni tanımlı değil
+madalya_degiskeni=veri["madalya"]
+print(pd.isnull(madalya_degiskeni).sum())
+#madalya değişkeni tanımlı olmayan örnekleri bul, (NaN)
+#tilda işareti ile tersini al
+#madalya değişkeni tanımlı olan örnekleri bulmak için filtre oluştur
+madalya_degiskeni_filtresi=~pd.isnull(madalya_degiskeni)
+veri=veri[madalya_degiskeni_filtresi]
+# print(veri.head(5))
 print(veri.info())
 
+veri.to_csv("olimpiyatlar_temizlenmis.csv",index=False)
