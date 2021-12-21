@@ -26,3 +26,12 @@ def plotHistogram(degisken):
 sayisal_degisken=["yas","boy","kilo","yil"]
 for i in sayisal_degisken:
     plotHistogram(i)
+
+#veri içerisinde bulunan sayısal değerleri istatiksel açıdan inceleyelim
+veri.describe()
+#yas değişkeni için filtreyi uygulayıp sonra kutu grafiği çizdirelim
+plt.boxplot(veri.yas)
+plt.title("Yaş değişkeni için kutu grafiği")
+plt.xlabel("yas")
+plt.ylabel("Değer")
+plt.show()
