@@ -28,8 +28,10 @@ def plotBar(degisken,n=5):
     plt.title("Veri sıklığı- {}".format(degisken))
     plt.show()
     print("{}:\n{}".format(degisken,veri_sayma))
-    #sayısal değişkenler için histogram çizdirelim
-    kategorik_degisken=["isim","cinsiyet","takim","uok","sezon","sehir","spor","etkinlik","madalya"]
+ #sayısal değişkenler için histogram çizdirelim
+kategorik_degisken=["isim","cinsiyet","takim","uok","sezon","sehir","spor","etkinlik","madalya"]
 
-    for i in kategorik_degisken:
-        plotBar(i)
+for i in kategorik_degisken:
+    plotBar(i)   
+
+
